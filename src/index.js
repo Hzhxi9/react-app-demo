@@ -9,6 +9,7 @@ import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 
 import { BrowserRouter as Router } from "react-router-dom";
+import routes from "./routes";
 
 import NavigationBar from "./components/NavigationBar.jsx";
 import App from "./App";
@@ -16,10 +17,11 @@ import App from "./App";
 // const store = createStore(null, composeWithDevTools(applyMiddleware(logger, thunk)));
 
 ReactDOM.render(
-  <Router routes={""}>
+  <Router routes={routes}>
     <React.StrictMode>
       <App />
       <NavigationBar />
+      {routes}
     </React.StrictMode>
   </Router>,
   document.getElementById("root")
