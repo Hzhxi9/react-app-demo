@@ -9,8 +9,8 @@ const auth = require("./routes/auth");
 
 app.use(bodyParser.json());
 app.use("/api/user", users);
-app.use('/api/auth',auth);
+app.use("/api/auth", auth);
 
-app.listen(3031, (req,res) => {
-    debug('server open')
-})
+app.listen(3031, (req, res) => {
+  debug("server open");
+});

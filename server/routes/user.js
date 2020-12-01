@@ -26,21 +26,16 @@ const validatorInput = (data) => {
 
   return {
     errors,
-    isVaild: isEmpty(errors),
+    isValid: isEmpty(errors),
   };
 };
 
 router.post("/", (req, res) => {
-  const { errors, isVaild } = validatorInput(req.body);
+  const { errors, isValid } = validatorInput(req.body);
 
-  var sql = "insert into user values (null, ?,?,?,?)";
-  var arr = [
-    req.body.email,
-    req.body.username,
-    req.body.password,
-    req.body.passwordConfirmation,
-  ];
-  if (isVaild) {
+  var sql = "insert into user values (?,?,?,?,null )";
+  var arr = [req.body.username, req.body.email, req.body.password, req.body.passwordConfirmation];
+  if (isValid) {
     sqlFn(sql, arr, function (data) {
       if (data.affectedRows) {
         res.send({ success: true });
@@ -56,7 +51,7 @@ router.post("/", (req, res) => {
 router.get("/:username", (req, res) => {
   var sql = "select * from user where `username`=?";
   var arr = [req.params.username];
-
+  console.log(arr);
   sqlFn(sql, arr, function (data) {
     if (data) {
       res.send(data);
